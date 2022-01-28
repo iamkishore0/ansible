@@ -2,7 +2,7 @@
  - hosts: all
    become: true
    tasks:
-     - name: Installing tree
+     - name: Installing maven
        yum:
-        name: tree
+        name: maven
         state: installed
