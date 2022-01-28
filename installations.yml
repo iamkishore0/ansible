@@ -1,8 +1,12 @@
----
- - hosts: all
-   become: true
-   tasks:
-     - name: Installing maven
-       yum:
-        name: maven
-        state: installed
+pipeline {
+    agent any
+
+    stages {
+        stage('git') {
+            steps {
+                git branch: 'main', url: 'https://github.com/gogineni000/ansible.git'
+            }
+        }
+    }
+}
+
