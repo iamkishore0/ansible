@@ -1,0 +1,11 @@
+---
+- hosts: <pvt ip of Docker>
+  tasks:
+  - name: remove existing container
+    command: docker rm -f mycontainer
+  - name: remove existing image
+    command: docker rmi -f myimage
+  - name: create docker image
+    command: docker build -t myimage .
+  - name: create container from docker image
+    command: docker run -d --name mycontainer -p 8083:8080 gameoflife:latest
