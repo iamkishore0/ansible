@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: true
+  gather_facts: yes
+  tasks:
+  - name: "populate service status"
+    service_facts:
+  - name: "check the <httpd> service facts"
+    debug:
+      msg: "{{ansible_facts.services['httpd.service'].state}}"
+  - name: "verify if httpd is running"
+    assert:
+      that:
+        - "'{{ansible_facts.services['httpd.service'].state}}' == 'running'"
+      fail_msg: "httpd not running"
+      success_msg: "httpd is running"
